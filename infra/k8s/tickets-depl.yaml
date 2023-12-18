@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketing-tickets-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticketing-tickets
+  template:
+    metadata:
+      labels:
+        app: ticketing-tickets
+    spec:
+      containers:
+        - name: ticketing-tickets
+          image: stanvasilyev/ticketing_tickets
+          # image: us.gcr.io/ticketing-node-js-course/ticketing_auth
+          env:
+            - name: MONGO_URI
+              value: "mongodb://ticketing-tickets-mongo-srv:27017/ticketing_tickets"
+            - name: NATS_URL
+              value: "http://ticketing-nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: "ticketing"
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticketing-tickets-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: ticketing-tickets
+  ports:
+    - name: ticketing-tickets
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

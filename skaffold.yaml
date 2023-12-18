@@ -1,0 +1,62 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+build:
+  artifacts:
+    - image: stanvasilyev/ticketing_auth
+      # image: us.gcr.io/ticketing-node-js-course/ticketing_auth
+      context: auth
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: stanvasilyev/ticketing_client
+      context: client
+      sync:
+        manual:
+          - src: "**/*.ts"
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: stanvasilyev/ticketing_tickets
+      context: tickets
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: stanvasilyev/ticketing_orders
+      context: orders
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: stanvasilyev/ticketing_expiration
+      context: expiration
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+    - image: stanvasilyev/ticketing_payments
+      context: payments
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+      docker:
+        dockerfile: Dockerfile
+  local:
+    push: false
+  # googleCloudBuild:
+  #   projectId: ticketing-node-js-course
+manifests:
+  rawYaml:
+    - ./infra/k8s/*.yaml
+deploy:
+  kubectl: {}
