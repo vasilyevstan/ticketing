@@ -11,7 +11,7 @@ it("checks the current user", async () => {
       email: "test@test.com",
       password: "password",
     })
-    .expect(200);
+    .expect(4000);
 
   const response = await request(app)
     .get("/api/users/currentuser")
