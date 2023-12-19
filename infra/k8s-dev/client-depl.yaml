@@ -16,6 +16,8 @@ spec:
         - name: ticketing-client
           image: stanvasilyev/ticketing_client
           env:
+            - name: INGRESS_BASE_URL
+              value: "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local"
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
