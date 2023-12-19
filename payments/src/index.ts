@@ -31,6 +31,7 @@ const startUp = async () => {
   }
 
   try {
+    console.log("Starting up...");
     await natsWrapper.connect(
       process.env.NATS_CLUSTER_ID,
       process.env.NATS_CLIENT_ID,
@@ -49,10 +50,10 @@ const startUp = async () => {
     new OrderCancelledListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
+    console.log("Connected to database");
   } catch (err) {
     throw new DatabaseConnectionError();
   }
-  console.log("Connected to database");
 
   app.listen(3000, () => {
     console.log("Listening on 3000");
