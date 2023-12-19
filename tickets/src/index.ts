@@ -6,6 +6,7 @@ import { OrderCreatedListener } from "./event/listener/OrderCreatedListener";
 import { OrderCancelledListener } from "./event/listener/OrderCancelledListener";
 
 const startUp = async () => {
+  console.log("Starting up...");
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");
   }
@@ -43,10 +44,10 @@ const startUp = async () => {
     new OrderCancelledListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
+    console.log("Connected to database");
   } catch (err) {
     throw new DatabaseConnectionError();
   }
-  console.log("Connected to database");
 
   app.listen(3000, () => {
     console.log("Listening on 3000");
