@@ -15,10 +15,10 @@ const startUp = async () => {
 
   try {
     await mongoose.connect(process.env.MONGO_URI);
+    console.log("Connected to database");
   } catch (err) {
     throw new DatabaseConnectionError();
   }
-  console.log("Connected to database");
 
   app.listen(3000, () => {
     console.log("Listening on 3000");
