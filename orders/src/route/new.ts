@@ -14,7 +14,7 @@ import { OrderCreatedPublisher } from "../event/publisher/OrderCreatedPublisher"
 import { natsWrapper } from "../NatsWrapper";
 
 // minutes
-const EXPIRATION_INTERVAL = 1 * 60;
+const EXPIRATION_INTERVAL = 10 * 60;
 
 const router = express.Router();
 

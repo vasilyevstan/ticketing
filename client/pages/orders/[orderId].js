@@ -33,7 +33,9 @@ const OrderShow = ( {order, currentUser} ) => {
   }
 
   return <div>
-    Time left to pay: {timeLeft} seconds
+    Time left to pay: {timeLeft} seconds<br/>
+    For testing purposes you ca use the credit card number "4242 4242 4242 4242", valid future date and any CVC<br/>
+    <br/>
 
     <StripeCheckout  
       token={({ id }) => doRequest({ token: id })}
