@@ -11,15 +11,12 @@ const startUp = async () => {
   if (!process.env.JWT_KEY) {
     throw new Error("JWT_KEY must be defined");
   }
-
   if (!process.env.STRIPE_KEY) {
     throw new Error("STRIPE_KEY must be defined");
   }
-
   if (!process.env.MONGO_URI) {
     throw new Error("MONGO_URI must be defined");
   }
-
   if (!process.env.NATS_CLUSTER_ID) {
     throw new Error("NATS_CLUSTER_ID must be defined");
   }

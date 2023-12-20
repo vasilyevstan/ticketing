@@ -5,6 +5,7 @@ import { OrderCreatedListener } from "./event/listener/OrderCreatedListener";
 const startUp = async () => {
   console.log("Starting up...");
 
+  // make sure environment variables exist
   if (!process.env.NATS_CLUSTER_ID) {
     throw new Error("NATS_CLUSTER_ID must be defined");
   }

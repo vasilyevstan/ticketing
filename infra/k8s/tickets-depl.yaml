@@ -15,7 +15,6 @@ spec:
       containers:
         - name: ticketing-tickets
           image: stanvasilyev/ticketing_tickets
-          # image: us.gcr.io/ticketing-node-js-course/ticketing_auth
           env:
             - name: MONGO_URI
               value: "mongodb://ticketing-tickets-mongo-srv:27017/ticketing_tickets"
