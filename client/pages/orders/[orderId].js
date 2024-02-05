@@ -34,7 +34,7 @@ const OrderShow = ( {order, currentUser} ) => {
 
   return <div>
     Time left to pay: {timeLeft} seconds<br/>
-    For testing purposes you ca use the credit card number "4242 4242 4242 4242", valid future date and any CVC<br/>
+    For testing purposes you can use the credit card number "4242 4242 4242 4242", with valid future date and any CVC<br/>
     <br/>
 
     <StripeCheckout  
